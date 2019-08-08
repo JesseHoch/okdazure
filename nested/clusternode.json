@@ -143,9 +143,6 @@
 			"platform": "[parameters('redHatTags').platform]"
 		},
 		"properties": {
-			"availabilitySet": {
-				"id": "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySet'))]"
-			},
 			"hardwareProfile": {
 				"vmSize": "[parameters('vmSize')]"
 			},
