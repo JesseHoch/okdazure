@@ -43,30 +43,11 @@
 				"description": "VM Size"
 			}
 		},
-		"availabilitySet": {
-			"type": "string",
-			"minLength": 1,
-			"metadata": {
-				"description": "Name of Availibility Set"
-			}
-		},
 		"hostname": {
 			"type": "string",
 			"minLength": 1,
 			"metadata": {
 				"description": "VM Hostname"
-			}
-		},
-		"unmanagedOsDiskUri": {
-			"type": "string",
-			"metadata": {
-				"description": "Unmanaged OS disk uri"
-			}
-		},
-		"unmanagedDataDiskUri": {
-			"type": "string",
-			"metadata": {
-				"description": "Unmanaged data disk uri"
 			}
 		},
 		"role": {
@@ -97,12 +78,6 @@
 			"type": "string",
 			"metadata": {
 				"description": "Storage Account for data disk"
-			}
-		},
-		"diagStorageAccount": {
-			"type": "string",
-			"metadata": {
-				"description": "Diagnostics Storage Account"
 			}
 		},
 		"apiVersionStorage": {
@@ -153,27 +128,6 @@
 				"createOption": "Empty"
 			}]
 		},
-		"unmanagedStorageProfile": {
-			"imageReference": "[parameters('imageReference')]",
-			"osDisk": {
-				"name": "[concat(parameters('hostName'), '-osdisk')]",
-				"vhd": {
-					"uri": "[concat(parameters('unmanagedOsDiskUri'), 'vhds/', parameters('hostname'), '-osdisk.vhd')]"
-				},
-				"caching": "ReadWrite",
-				"createOption": "FromImage",
-				"diskSizeGB": 64
-			},
-			"dataDisks": [{
-				"name": "[concat(parameters('hostname'), '-docker-pool')]",
-				"diskSizeGB": "[parameters('dataDiskSize')]",
-				"lun": 0,
-				"vhd": {
-					"uri": "[concat(parameters('unmanagedDataDiskUri'), 'vhds/', parameters('hostname'), '-docker-pool.vhd')]"
-				},
-				"createOption": "Empty"
-			}]
-		},
 		"storageProfile": "[concat(parameters('storageKind'), 'StorageProfile')]"
 	},
 	"resources": [{
@@ -213,12 +167,6 @@
 				"networkInterfaces": [{
 					"id": "[resourceId('Microsoft.Network/networkInterfaces', concat(parameters('hostname'), '-nic'))]"
 				}]
-			},
-			"diagnosticsProfile": {
-				"bootDiagnostics": {
-					"enabled": true,
-					"storageUri": "[concat(concat(reference(resourceId(resourceGroup().name, 'Microsoft.Storage/storageAccounts', parameters('diagStorageAccount')), parameters('apiVersionStorage')).primaryEndpoints['blob']))]"
-				}
 			}
 		}
 	}],
