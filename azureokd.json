@@ -1,0 +1,252 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualMachines_okdbastion_name": {
+            "defaultValue": "okdbastion",
+            "type": "String"
+        },
+        "disks_okdbastion_OsDisk_1_914d7e5e360b4fb1be3683311589ce94_externalid": {
+            "defaultValue": "/subscriptions/4cedc5dd-e3ad-468d-bf66-32e31bdb9148/resourceGroups/1-86b578-playground-sandbox/providers/Microsoft.Compute/disks/okdbastion_OsDisk_1_914d7e5e360b4fb1be3683311589ce94",
+            "type": "String"
+        },
+        "networkInterfaces_okdbastion565_externalid": {
+            "defaultValue": "/subscriptions/4cedc5dd-e3ad-468d-bf66-32e31bdb9148/resourceGroups/1-86b578-playground-sandbox/providers/Microsoft.Network/networkInterfaces/okdbastion565",
+            "type": "String"
+        },
+        "virtualMachines_okdmaster_name": {
+            "defaultValue": "okdmaster",
+            "type": "String"
+        },
+        "disks_okdmaster_OsDisk_1_19b2ad4a84f24d51925868bedbcbfce3_externalid": {
+            "defaultValue": "/subscriptions/4cedc5dd-e3ad-468d-bf66-32e31bdb9148/resourceGroups/1-86b578-playground-sandbox/providers/Microsoft.Compute/disks/okdmaster_OsDisk_1_19b2ad4a84f24d51925868bedbcbfce3",
+            "type": "String"
+        },
+        "networkInterfaces_okdmaster779_externalid": {
+            "defaultValue": "/subscriptions/4cedc5dd-e3ad-468d-bf66-32e31bdb9148/resourceGroups/1-86b578-playground-sandbox/providers/Microsoft.Network/networkInterfaces/okdmaster779",
+            "type": "String"
+        },
+        "virtualMachines_okdinfra_name": {
+            "defaultValue": "okdinfra",
+            "type": "String"
+        },
+        "disks_okdinfra_OsDisk_1_dcbb418a76bd4e44bbf9ba985a5b5a7e_externalid": {
+            "defaultValue": "/subscriptions/4cedc5dd-e3ad-468d-bf66-32e31bdb9148/resourceGroups/1-86b578-playground-sandbox/providers/Microsoft.Compute/disks/okdinfra_OsDisk_1_dcbb418a76bd4e44bbf9ba985a5b5a7e",
+            "type": "String"
+        },
+        "networkInterfaces_okdinfra728_externalid": {
+            "defaultValue": "/subscriptions/4cedc5dd-e3ad-468d-bf66-32e31bdb9148/resourceGroups/1-86b578-playground-sandbox/providers/Microsoft.Network/networkInterfaces/okdinfra728",
+            "type": "String"
+        },
+        "virtualMachines_okdnode_name": {
+            "defaultValue": "okdnode",
+            "type": "String"
+        },
+        "disks_okdnode_OsDisk_1_61016200e260402eb7e13e6bc65bbb9e_externalid": {
+            "defaultValue": "/subscriptions/4cedc5dd-e3ad-468d-bf66-32e31bdb9148/resourceGroups/1-86b578-playground-sandbox/providers/Microsoft.Compute/disks/okdnode_OsDisk_1_61016200e260402eb7e13e6bc65bbb9e",
+            "type": "String"
+        },
+        "networkInterfaces_okdnode248_externalid": {
+            "defaultValue": "/subscriptions/4cedc5dd-e3ad-468d-bf66-32e31bdb9148/resourceGroups/1-86b578-playground-sandbox/providers/Microsoft.Network/networkInterfaces/okdnode248",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2019-03-01",
+            "name": "[parameters('virtualMachines_okdbastion_name')]",
+            "location": "eastus",
+            "properties": {
+                "hardwareProfile": {
+                    "vmSize": "Standard_B2ms"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "OpenLogic",
+                        "offer": "CentOS",
+                        "sku": "7.5",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Linux",
+                        "name": "[concat(parameters('virtualMachines_okdbastion_name'), '_OsDisk_1_914d7e5e360b4fb1be3683311589ce94')]",
+                        "createOption": "FromImage",
+                        "caching": "ReadWrite",
+                        "managedDisk": {
+                            "storageAccountType": "Premium_LRS",
+                            "id": "[parameters('disks_okdbastion_OsDisk_1_914d7e5e360b4fb1be3683311589ce94_externalid')]"
+                        },
+                        "diskSizeGB": 30
+                    },
+                    "dataDisks": []
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_okdbastion_name')]",
+                    "adminUsername": "okdadmin",
+                    "linuxConfiguration": {
+                        "disablePasswordAuthentication": false,
+                        "provisionVMAgent": true
+                    },
+                    "secrets": [],
+                    "allowExtensionOperations": true
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[parameters('networkInterfaces_okdbastion565_externalid')]"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2019-03-01",
+            "name": "[parameters('virtualMachines_okdmaster_name')]",
+            "location": "eastus",
+            "properties": {
+                "hardwareProfile": {
+                    "vmSize": "Standard_B2ms"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "OpenLogic",
+                        "offer": "CentOS",
+                        "sku": "7.5",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Linux",
+                        "name": "[concat(parameters('virtualMachines_okdmaster_name'), '_OsDisk_1_19b2ad4a84f24d51925868bedbcbfce3')]",
+                        "createOption": "FromImage",
+                        "caching": "ReadWrite",
+                        "managedDisk": {
+                            "storageAccountType": "Premium_LRS",
+                            "id": "[parameters('disks_okdmaster_OsDisk_1_19b2ad4a84f24d51925868bedbcbfce3_externalid')]"
+                        },
+                        "diskSizeGB": 30
+                    },
+                    "dataDisks": []
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_okdmaster_name')]",
+                    "adminUsername": "okdadmin",
+                    "linuxConfiguration": {
+                        "disablePasswordAuthentication": false,
+                        "provisionVMAgent": true
+                    },
+                    "secrets": [],
+                    "allowExtensionOperations": true
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[parameters('networkInterfaces_okdmaster779_externalid')]"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2019-03-01",
+            "name": "[parameters('virtualMachines_okdinfra_name')]",
+            "location": "eastus",
+            "properties": {
+                "hardwareProfile": {
+                    "vmSize": "Standard_B2ms"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "OpenLogic",
+                        "offer": "CentOS",
+                        "sku": "7.5",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Linux",
+                        "name": "[concat(parameters('virtualMachines_okdinfra_name'), '_OsDisk_1_dcbb418a76bd4e44bbf9ba985a5b5a7e')]",
+                        "createOption": "FromImage",
+                        "caching": "ReadWrite",
+                        "managedDisk": {
+                            "storageAccountType": "Premium_LRS",
+                            "id": "[parameters('disks_okdinfra_OsDisk_1_dcbb418a76bd4e44bbf9ba985a5b5a7e_externalid')]"
+                        },
+                        "diskSizeGB": 30
+                    },
+                    "dataDisks": []
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_okdinfra_name')]",
+                    "adminUsername": "okdadmin",
+                    "linuxConfiguration": {
+                        "disablePasswordAuthentication": false,
+                        "provisionVMAgent": true
+                    },
+                    "secrets": [],
+                    "allowExtensionOperations": true
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[parameters('networkInterfaces_okdinfra728_externalid')]"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2019-03-01",
+            "name": "[parameters('virtualMachines_okdnode_name')]",
+            "location": "eastus",
+            "properties": {
+                "hardwareProfile": {
+                    "vmSize": "Standard_B2ms"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "OpenLogic",
+                        "offer": "CentOS",
+                        "sku": "7.5",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Linux",
+                        "name": "[concat(parameters('virtualMachines_okdnode_name'), '_OsDisk_1_61016200e260402eb7e13e6bc65bbb9e')]",
+                        "createOption": "FromImage",
+                        "caching": "ReadWrite",
+                        "managedDisk": {
+                            "storageAccountType": "Premium_LRS",
+                            "id": "[parameters('disks_okdnode_OsDisk_1_61016200e260402eb7e13e6bc65bbb9e_externalid')]"
+                        },
+                        "diskSizeGB": 30
+                    },
+                    "dataDisks": []
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_okdnode_name')]",
+                    "adminUsername": "okdadmin",
+                    "linuxConfiguration": {
+                        "disablePasswordAuthentication": false,
+                        "provisionVMAgent": true
+                    },
+                    "secrets": [],
+                    "allowExtensionOperations": true
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[parameters('networkInterfaces_okdnode248_externalid')]"
+                        }
+                    ]
+                }
+                }
+            }
+        },    
+    ],
+    "outputs": {
+    }
+}

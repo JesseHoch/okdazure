@@ -1,0 +1,69 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+        "bastionVmSize": {
+			"value": "Standard_B1ms"
+		}, 
+		"masterVmSize": {
+			"value": "Standard_B1ms"
+		},
+		"infraVmSize": {
+			"value": "Standard_B1ms"
+		},
+		"nodeVmSize": {
+			"value": "Standard_B1ms"
+		},
+		"storageKind": {
+			"value": "managed"
+		},
+		"openshiftClusterPrefix": {
+			"value": "mycluster"
+        },
+        "bastionInstanceCount": {
+			"value": 1
+		}, 
+		"masterInstanceCount": {
+			"value": 1
+		},
+		"infraInstanceCount": {
+			"value": 1
+		},
+		"nodeInstanceCount": {
+			"value": 1
+		},
+		"dataDiskSize": {
+			"value": 128
+		},
+		"adminUsername": {
+			"value": "clusteradmin"
+		},
+		"openshiftPassword": {
+			"value": "Change123"
+		},
+		"sshPublicKey": {
+			"value": "{SSH Public Key}"
+		},
+		"enableMetrics": {
+			"value": "true"
+		},
+		"enableLogging": {
+			"value": "false"
+		},
+		"keyVaultResourceGroup": {
+			"value": "keyvaultrg"
+		},
+		"keyVaultName": {
+			"value": "keyvault"
+		},
+		"keyVaultSecret": {
+			"value": "keysecret"
+		},
+		"enableAzure": {
+			"value": "true"
+		},
+		"defaultSubDomainType": {
+			"value": "nipio"
+		}
+	}
+}
