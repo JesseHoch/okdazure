@@ -124,18 +124,6 @@
 				"description": "Enable Azure: true or false"
 			}
 		},
-		"aadClientId": {
-			"type": "string",
-			"metadata": {
-				"description": "Azure AD Client ID"
-			}
-		},
-		"aadClientSecret": {
-			"type": "securestring",
-			"metadata": {
-				"description": "Azure AD Client Secret"
-			}
-		},
 		"nipioDomain": {
 			"type": "string",
 			"metadata": {

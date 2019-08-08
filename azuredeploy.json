@@ -21,6 +21,7 @@
 		"sshKeyPath": "[concat('/home/', variables('adminUsername'),'/.ssh/authorized_keys')]",
 		"enableAzure": "true",
 		"defaultSubDomainType": "nip.io",
+		"defaultSubDomain": "okdcluster.nip.io",
 		"location": "[resourceGroup().location]",
 		"resourceGroupName": "[resourceGroup().id]",
 		"apiVersionCompute": "2017-03-30",
