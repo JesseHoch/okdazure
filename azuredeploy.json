@@ -833,12 +833,6 @@
 					"enableAzure": {
 						"value": "[variables('enableAzure')]"
 					},
-					"aadClientId": {
-						"value": "[variables('aadClientId')]"
-					},
-					"aadClientSecret": {
-						"value": "[variables('aadClientSecret')]"
-					},
 					"nipioDomain": {
 						"value": "[concat(reference(variables('infraLbPublicIpDnsLabel')).ipAddress, '.nip.io')]"
 					},
